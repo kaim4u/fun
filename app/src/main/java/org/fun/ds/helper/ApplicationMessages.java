@@ -12,8 +12,8 @@ public class ApplicationMessages {
 	static final int NORMAL_EXIT_SIGNAL = 0;
 	static final int ABNORMAL_EXIT_SIGNAL = -1;
 	/*Messages used in menu*/
-	static final String HEADER = "\nProgram to Demonstrate Singly Linked list Operations\n";
-	static final String MENU_HEADER = "\n\nCurrent List contains";
+	static final String HEADER = "\n\nProgram To Demonstrate Singly Linked List Operations";
+	static final String MENU_HEADER = "\n\nCurrent List State";
 	static final String MENU1 = "\n\t\tPress [1] to add after last element";
 	static final String MENU2 = "\t\tPress [2] to add before first element";
 	static final String MENU3 = "\t\tPress [3] to add at specified position";
@@ -37,7 +37,7 @@ public class ApplicationMessages {
 	static final String INVALID_MENU_RANGE = "Invalid input. Valid input lies between "+MENU_MIN_RANGE+" to "+MENU_MAX_RANGE;
 	static final String ADD_SUCCESS = "Element added successfully";
 	static final String REMOVE_SUCCESS = "Element removed successfully";
-	static final String REMOVE_FAIL = "Element not found with specified data";
+	static final String REMOVE_FAIL = "Element not found";
 	static final String LAST_SUCCESS = "Last element removed successfully";
 	static final String FIRST_SUCCESS = "First element removed successfully";
 	static final String LIST_EMPTY = "List is empty. Please add elements";
