@@ -118,4 +118,13 @@ public interface List {
 	 * Reverse this list  
 	 */
 	void reverse();
+	
+	/**
+	 * Remove first occurrence of element specified by its value if exist.  
+	 * 
+	 * @param data
+	 *            the specified element value.
+	 * @return    returns true if element exist with same value otherwise false
+	 */
+	boolean delete(final int data);
 }

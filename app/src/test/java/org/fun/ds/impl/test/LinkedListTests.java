@@ -34,26 +34,22 @@ public class LinkedListTests {
 
 	/**
 	 * Test method for {@link org.fun.ds.impl.LinkedList#add(int)}.
+	 * 
 	 */
 	@Test
 	public final void testAdd() {
-		
-		int expectedSizeValue= 0;
-		assertEquals(expectedSizeValue, list.size());
-		
-		int expectedValue = 12;
-		list.add(expectedValue); expectedSizeValue = 1;   
-		assertEquals(expectedValue, list.get(0)); 
-		assertEquals(expectedSizeValue, list.size());
-		
-		expectedValue = 52;
-		list.add(expectedValue); expectedSizeValue= 2;
-		assertEquals(expectedValue, list.get(1)); 
-		assertEquals(expectedSizeValue, list.size());
+		assertEquals(0, list.size());
+		list.add(12);   
+		assertEquals(12, list.get(0)); 
+		assertEquals(1, list.size());
+		list.add(52);
+		assertEquals(52, list.get(1)); 
+		assertEquals(2, list.size());
 	}
 	
 	/**
 	 * Test method for {@link org.fun.ds.impl.LinkedList#add(int, int)}.
+	 * 
 	 */
 	@Test
 	public final void testAddAtIndex1() {
@@ -373,6 +369,7 @@ public class LinkedListTests {
 	
 	/**
 	 * Test method for {@link org.fun.ds.impl.LinkedList#contain()}.
+	 * list is empty
 	 */
 	@Test
 	public final void testContain() { 				//list empty scenario, return -2
@@ -381,6 +378,7 @@ public class LinkedListTests {
 	
 	/**
 	 * Test method for {@link org.fun.ds.impl.LinkedList#contain()}.
+	 * list contains at least one element and specified data element not present 
 	 */
 	@Test
 	public final void testContain1() { 				//list not empty and element not present scenario, returns -1
@@ -390,6 +388,7 @@ public class LinkedListTests {
 	}
 	/**
 	 * Test method for {@link org.fun.ds.impl.LinkedList#contain()}.
+	 * list contains at least one element and specified data element present
 	 */
 	@Test
 	public final void testContain3() { 				//list not empty and element present scenario, returns index
@@ -399,20 +398,27 @@ public class LinkedListTests {
 	}
 	/**
 	 * Test method for {@link org.fun.ds.impl.LinkedList#reverse()}.
+	 * list is empty
 	 */
 	@Test
 	public final void testReverse() {
 		list.reverse();
 		assertEquals(0, list.size());
 	}
+	/**
+	 * Test method for {@link org.fun.ds.impl.LinkedList#reverse()}.
+	 * list contains one element
+	 */
 	@Test
 	public final void testReverse2() {
 		list.addLast(12);
 		list.reverse();
-		assertEquals(1, list.size());
-		assertEquals(12, list.getFirst());
 		assertEquals(12, list.getLast());
 	}
+	/**
+	 * Test method for {@link org.fun.ds.impl.LinkedList#reverse()}.
+	 * list contain more then one element 
+	 */
 	@Test
 	public final void testReverse3() {
 		list.addLast(12);
@@ -423,4 +429,90 @@ public class LinkedListTests {
 		assertEquals(13, list.get(1));
 		assertEquals(12, list.getLast());
 	}
+	
+	/**
+	 * Test method for {@link org.fun.ds.impl.LinkedList#delete(int)}.
+	 * list is Empty.
+	 */
+	@Test
+	public final void testDelete(){
+		assertEquals(false, list.delete(12));
+	}
+	
+	/**
+	 * Test method for {@link org.fun.ds.impl.LinkedList#delete(int)}.
+	 * list contains one element and not equals to specified element   
+	 */
+	@Test
+	public final void testDelete2(){
+		list.addLast(12);
+		assertEquals(false, list.delete(13));
+	}
+	
+	/**
+	 * Test method for {@link org.fun.ds.impl.LinkedList#delete(int)}.
+	 * list contains one element and equals to specified element   
+	 */
+	@Test
+	public final void testDelete3(){
+		list.addLast(12);
+		assertEquals(true, list.delete(12));
+	}
+
+	/**
+	 * Test method for {@link org.fun.ds.impl.LinkedList#delete(int)}.
+	 * list contains more then one element and specified element not present   
+	 */
+	@Test
+	public final void testDelete4(){
+		list.addLast(12);
+		list.addLast(14);
+		list.addLast(17);
+		list.addLast(15);
+		list.addLast(16);
+		assertEquals(false, list.delete(0));
+	}
+	
+	/**
+	 * Test method for {@link org.fun.ds.impl.LinkedList#delete(int)}.
+	 * list contains more then one element and specified element present at last node   
+	 */
+	@Test
+	public final void testDelete5(){
+		list.addLast(12);
+		list.addLast(14);
+		list.addLast(13);
+		list.addLast(15);
+		list.addLast(16);
+		assertEquals(true, list.delete(16));
+	}
+	
+	/**
+	 * Test method for {@link org.fun.ds.impl.LinkedList#delete(int)}.
+	 * list contains more then one element and specified element present   
+	 */
+	@Test
+	public final void testDelete6(){
+		list.addLast(12);
+		list.addLast(14);
+		list.addLast(17);
+		list.addLast(15);
+		list.addLast(16);
+		assertEquals(true, list.delete(15));
+	}
+	
+	/**
+	 * Test method for {@link org.fun.ds.impl.LinkedList#delete(int)}.
+	 * list contains more then one element and specified element present   
+	 */
+	@Test
+	public final void testDelete7(){
+		list.addLast(120);
+		list.addLast(140);
+		list.addLast(170);
+		list.addLast(150);
+		list.addLast(160);
+		assertEquals(true, list.delete(120));
+	}
+	
 }

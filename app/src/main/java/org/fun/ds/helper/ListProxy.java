@@ -111,7 +111,7 @@ public class ListProxy {
 	void addBulk() {
 		int nuberOfElements = 0;
 		while (true) {
-			print(INPUT_NUMBER);
+			print(INPUT_SIZE);
 			nuberOfElements = getInput();
 			if (isValidRange(nuberOfElements)) {
 				list = null;
@@ -130,7 +130,19 @@ public class ListProxy {
 		list = null;
 		list = new LinkedList();
 	}
-
+	private void delete(){
+		if (list.size() == 0) {
+			println(LIST_EMPTY);
+			return;
+		}
+		print(INPUT_NUMBER);
+		int data = getInput();
+		if(list.delete(data))
+			println(REMOVE_SUCCESS);
+		else
+			print(REMOVE_FAIL);
+	}
+	
 	void normalExit() {
 		println(NORMAL_EXIT);
 		close();
@@ -194,6 +206,7 @@ public class ListProxy {
 		println(MENU9);
 		println(MENU10);
 		println(MENU11);
+		println(MENU12);
 	}
 
 	void display() {
@@ -219,6 +232,7 @@ public class ListProxy {
 		int choice = -1;
 		while (true) {
 			display();
+			print(INPUT_CHOICE);
 			choice = getInput();
 			switch (choice) {
 			case 1:
@@ -252,6 +266,9 @@ public class ListProxy {
 				createEmptyList();
 				break;	
 			case 11:
+				delete();
+				break;
+			case 12:
 				normalExit();
 			}
 			if (isValidChoice(choice))

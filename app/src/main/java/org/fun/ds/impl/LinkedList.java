@@ -163,7 +163,7 @@ public class LinkedList implements List {
 			if (p.next == null)
 				sb.append((p.data)).append(" ] Size = " + size);
 			else
-				sb.append(p.data).append(" -> ");
+				sb.append(p.data).append(" --> ");
 			p = p.next;
 			if((i++ % 25) == 0)
 				sb.append("\n");
@@ -267,7 +267,51 @@ public class LinkedList implements List {
 	public void reverse() {
 		reverseRecursively(first);
 	}
-	
+
+	/* (non-Javadoc)
+	 * @see org.fun.ds.List#delete(int)
+	 */
+	public boolean delete(int data) {
+		if(!isListEmpty()){									    // list's empty Check
+			if(size == 1){									    // list contain one element
+				if(first.data == data){							// element match found at first position
+					first = last = null;						// delete first and update last and first to null
+					--size;										// update size
+					return true;								// return true element match found
+				}else
+					return false;								// return false element mismatch found
+			}
+			else{												// list's not empty and must contains at least one element 
+				Node p = first;
+				if(p.data == data){								// element match found at first position
+					first = null;                               // make first point to null, to avoid dead store
+					first = p.next;								// update first, make first point to node next to first
+					--size;										// update size	
+					return true;								// return true, match found at first position
+				}
+					
+				while(p.next != null){							// traverse this list till just before last element 
+					if(p.next.data == data){					// next to current element match found
+						if(p.next.next == null){				// next to current element is last element
+							last = null;
+							p.next = null;						// make current point to null and update last
+							last = p;							// update last
+							--size;								// update size
+							return true;						// return true, element found at last position
+						}
+						else {									// element found at next to current position
+								p.next = p.next.next;			// make current node point to next to next
+								--size;							// update size
+								return true;					// return true, element match found somewhere in between last and first
+						}
+					}											
+					p = p.next;									// jump to next node, No match found in current iteration 
+				}
+			}
+		}
+		return false;								           // return false, list is empty 
+	}
+
 	/**
 	 * Reverse this list recursively
 	 * @param the current node. 
@@ -280,9 +324,9 @@ public class LinkedList implements List {
 			first = node;
 			return;
 		}
-		reverseRecursively(node.next);								// somewhere in middle, pass next node recursively until last reached
-		node.next.next = node;										// make node point to null should point to current node in each stack frame
-		node.next = null;											// make current node point to null, in each stack frame
+		reverseRecursively(node.next);					  // somewhere in between last and first, pass next node recursively until last reached
+		node.next.next = node;		   								// make node point to null should point to current node in each stack frame
+		node.next = null;											// make current node point to null, in this stack frame
 	}
 	
 	/**
@@ -320,7 +364,7 @@ public class LinkedList implements List {
 	 * @return true if this first exist otherwise false
 	 */
 	private boolean isFirstExist() {
-		return first != null; // check first exist ?
+		return first != null; 											// check first exist ?
 	}
 
 	/**
@@ -329,7 +373,7 @@ public class LinkedList implements List {
 	 * @return true if this last exist otherwise false
 	 */
 	private boolean isLastExist() {
-		return last != null; // check last exist ?
+		return last != null; 											// check last exist ?
 	}
 	
 	/**
