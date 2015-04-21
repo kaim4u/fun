@@ -5,167 +5,217 @@ import java.util.Scanner;
 
 import org.fun.ds.List;
 import org.fun.ds.impl.LinkedList;
+import static org.fun.ds.helper.ApplicationMessages.*;
+
 /**
  * Helper class for {@link org.fun.app.ListApp}
+ * 
  * @author Rakesh Kaim
  */
 public class ListProxy {
-	private final List list = new LinkedList();
+	private List list = new LinkedList();
 	private Scanner scanner = new Scanner(System.in);
-	
+
 	public ListProxy(int capacity) {
-		for(int i = 0; i <= capacity; ++i){
+		for (int i = 0; i <= capacity; ++i) {
 			list.addLast(i);
 		}
 		header();
 	}
-	
-	void addLast(){
-		print(ApplicationMessages.INPUT_NUMBER); 
+
+	void addLast() {
+		print(INPUT_NUMBER);
 		int data = getInput();
 		list.addLast(data);
-		print(ApplicationMessages.ADD_SUCCESS);
-	}	
-	void addFirst(){
-		print(ApplicationMessages.INPUT_NUMBER); 
+		print(ADD_SUCCESS);
+	}
+
+	void addFirst() {
+		print(INPUT_NUMBER);
 		int data = getInput();
 		list.addFirst(data);
-		print(ApplicationMessages.ADD_SUCCESS);
+		print(ADD_SUCCESS);
 	}
-	void add(){
-		if(list.size() == 0){
-			print(ApplicationMessages.LIST_EMPTY);
+
+	void add() {
+		if (list.size() == 0) {
+			print(LIST_EMPTY);
 			return;
 		}
-		print(ApplicationMessages.INPUT_NUMBER); 
+		print(INPUT_NUMBER);
 		int data = getInput();
-		print(ApplicationMessages.INPUT_POSITION); 
+		print(INPUT_POSITION);
 		int i = getInput();
-		while(i >=list.size()){
-			println(ApplicationMessages.INVALID_POSITION + (list.size()-1));
-			print(ApplicationMessages.INPUT_POSITION);
+		while (i >= list.size()) {
+			println(INVALID_POSITION + (list.size() - 1));
+			print(INPUT_POSITION);
 			i = getInput();
 		}
 		list.add(i, data);
-		System.out.print(ApplicationMessages.ADD_SUCCESS);
+		System.out.print(ADD_SUCCESS);
 	}
-	void removeLast(){
-		if(list.size() == 0){
-			print(ApplicationMessages.LIST_EMPTY);
+
+	void removeLast() {
+		if (list.size() == 0) {
+			print(LIST_EMPTY);
 			return;
 		}
 		list.removeLast();
-		print(ApplicationMessages.LAST_SUCCESS);
+		print(LAST_SUCCESS);
 	}
-	void removeFirst(){
-		if(list.size() == 0){
-			print(ApplicationMessages.LIST_EMPTY);
+
+	void removeFirst() {
+		if (list.size() == 0) {
+			print(LIST_EMPTY);
 			return;
 		}
 		list.removeFirst();
-		print(ApplicationMessages.FIRST_SUCCESS);
+		print(FIRST_SUCCESS);
 	}
-	void remove(){
+
+	void remove() {
 		int size = list.size();
-		if(size == 0){
-			print(ApplicationMessages.LIST_EMPTY);
+		if (size == 0) {
+			print(LIST_EMPTY);
 			return;
 		}
-		print(ApplicationMessages.INPUT_POSITION);
+		print(INPUT_POSITION);
 		int i = getInput();
-		while(i >= size){
-			println(ApplicationMessages.INVALID_POSITION + (size-1));
-			print(ApplicationMessages.INPUT_POSITION);
+		while (i >= size) {
+			println(INVALID_POSITION + (size - 1));
+			print(INPUT_POSITION);
 			i = getInput();
 		}
 		list.remove(i);
-		print(ApplicationMessages.REMOVE_SUCCESS);
+		print(REMOVE_SUCCESS);
 	}
-	void search(){
-		if(list.size() == 0){
-			println(ApplicationMessages.LIST_EMPTY);
+
+	void search() {
+		if (list.size() == 0) {
+			println(LIST_EMPTY);
 			return;
 		}
-		print(ApplicationMessages.INPUT_NUMBER); 
-		int data = getInput();	
+		print(INPUT_NUMBER);
+		int data = getInput();
 		int i = list.contain(data);
-		if(i == -1)
-			println(ApplicationMessages.NOT_FOUND);
+		if (i == -1)
+			println(NOT_FOUND);
 		else
-			println(ApplicationMessages.FOUND + i);
+			println(FOUND + i);
 	}
-	void reverse(){
+
+	void reverse() {
 		list.reverse();
 	}
-	void normalExit(){
-		println(ApplicationMessages.NORMAL_EXIT);
+
+	void addBulk() {
+		int nuberOfElements = 0;
+		while (true) {
+			print(INPUT_NUMBER);
+			nuberOfElements = getInput();
+			if (isValidRange(nuberOfElements)) {
+				list = null;
+				list = new LinkedList();
+				for (int i = 0; i < nuberOfElements; ++i)
+					list.addLast(i);
+				break;
+			} else {
+				println(INVALID_RANGE);
+			}
+		}
+
+	}
+
+	private void createEmptyList() {
+		list = null;
+		list = new LinkedList();
+	}
+
+	void normalExit() {
+		println(NORMAL_EXIT);
 		close();
-		System.exit(0);
+		System.exit(NORMAL_EXIT_SIGNAL);
 	}
-	void abnormalExit(){
-		println(ApplicationMessages.NOT_VALID_INPUT);
+
+	void abnormalExit() {
+		println(NOT_VALID_INPUT);
 		close();
-		System.exit(-1);
+		System.exit(ABNORMAL_EXIT_SIGNAL);
 	}
-	boolean isValidChoice(int in){
-		return in >= 1 && in < 9;
+
+	boolean isValidRange(int nuberOfElements) {
+		return nuberOfElements >= MIN_RANGE && nuberOfElements <= MAX_RANGE;
 	}
+
+	boolean isValidChoice(int in) {
+		return in >= MENU_MIN_RANGE && in <= MENU_MAX_RANGE;
+	}
+
 	/**
-	 * Read user input and return it to 
+	 * Read user input
 	 * @return user input
 	 */
-	int getInput(){
-		int in =0;
-		try{
-    	  		in = scanner.nextInt();
-      }catch(InputMismatchException ex){
-    	  System.out.println(ApplicationMessages.NOT_VALID_INPUT);
-    	  close();
-    	  System.exit(-1);
-      }
+	int getInput() {
+		int in = 0;
+		try {
+			in = scanner.nextInt();
+		} catch (InputMismatchException ex) {
+			abnormalExit();
+		}
 		return in;
 	}
+
 	/**
-	 * Close input stream 
+	 * Close input stream
+	 * 
 	 * @return user input
 	 */
-	private void close(){
-  		scanner.close();
+	private void close() {
+		scanner.close();
 	}
-	void showList(){
+
+	void showList() {
 		println(list.toString());
 	}
-	
-	void menuHeader(){
-		println(ApplicationMessages.MENU_HEADER);
+
+	void menuHeader() {
+		println(MENU_HEADER);
 	}
-	void menu(){
-		println(ApplicationMessages.MENU1);
-		println(ApplicationMessages.MENU2);
-		println(ApplicationMessages.MENU3);
-		println(ApplicationMessages.MENU4);
-		println(ApplicationMessages.MENU5);
-		println(ApplicationMessages.MENU6);
-		println(ApplicationMessages.MENU7);
-		println(ApplicationMessages.MENU8);
-		println(ApplicationMessages.MENU9);
+
+	void menu() {
+		println(MENU1);
+		println(MENU2);
+		println(MENU3);
+		println(MENU4);
+		println(MENU5);
+		println(MENU6);
+		println(MENU7);
+		println(MENU8);
+		println(MENU9);
+		println(MENU10);
+		println(MENU11);
 	}
-	void display(){
+
+	void display() {
 		menuHeader();
 		showList();
 		menu();
 	}
-	void header(){
-		println(ApplicationMessages.HEADER);
-		
+
+	void header() {
+		println(HEADER);
+
 	}
-	private void println(String msg){
+
+	private void println(String msg) {
 		System.out.println(msg);
 	}
-	private void print(String msg){
+
+	private void print(String msg) {
 		System.out.print(msg);
 	}
-	public void init(){
+
+	public void init() {
 		int choice = -1;
 		while (true) {
 			display();
@@ -183,25 +233,32 @@ public class ListProxy {
 			case 4:
 				removeLast();
 				break;
-			case 5: 
+			case 5:
 				removeFirst();
 				break;
-			case 6: 
+			case 6:
 				remove();
 				break;
-			case 7: 
+			case 7:
 				search();
 				break;
-			case 8: 
+			case 8:
 				reverse();
+				break;
+			case 9:
+				addBulk();
+				break;
+			case 10:
+				createEmptyList();
 				break;	
+			case 11:
+				normalExit();
 			}
 			if (isValidChoice(choice))
 				continue;
-			else if (choice == 9)
-				normalExit();
-			else
-				abnormalExit();
+			else{
+				println(INVALID_MENU_RANGE);
+			}
 		}
 	}
 }

@@ -163,7 +163,7 @@ public class LinkedList implements List {
 			if (p.next == null)
 				sb.append((p.data)).append(" ] Size = " + size);
 			else
-				sb.append(p.data).append(", ");
+				sb.append(p.data).append(" -> ");
 			p = p.next;
 			if((i++ % 25) == 0)
 				sb.append("\n");
