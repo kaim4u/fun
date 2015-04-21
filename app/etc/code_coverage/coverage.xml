@@ -3,7 +3,6 @@
 
 <coverage line-rate="0.9927007299270073" branch-rate="0.9857142857142858" lines-covered="136" lines-valid="137" branches-covered="69" branches-valid="70" complexity="2.3142857142857145" version="2.1.1" timestamp="1429606519377">
 	<sources>
-		<source>/home/rkaim/Documents/bitbucket/app/src/main/java</source>
 		<source>--source</source>
 	</sources>
 	<packages>

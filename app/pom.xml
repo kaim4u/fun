@@ -4,24 +4,25 @@
 	<groupId>org.fun.ds</groupId>
 	<artifactId>app</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>0.1</version>
 	<name>app</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
-		<skipTests>false</skipTests>
-		<maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
-		<buildTimestamp>${maven.build.timestamp}</buildTimestamp>
-		<buildId>${buildType}${buildTimestamp}</buildId>
+		
+		
 		<!-- Generic properties -->
 		<java.version>1.6</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		
 		<!-- Logging -->
 		<logback.version>1.0.13</logback.version>
 		<slf4j.version>1.7.5</slf4j.version>
+		
 		<!-- Test -->
 		<junit.version>4.11</junit.version>
+		<skipTests>false</skipTests>
 	</properties>
 
 	<dependencies>
@@ -33,7 +34,6 @@
 			<version>${slf4j.version}</version>
 			<scope>compile</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
@@ -55,6 +55,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	
 	<build>
 		<defaultGoal>install</defaultGoal>
 		<testResources>
@@ -95,32 +96,32 @@
 				<version>2.7</version>
 				<configuration>
 					<instrumentation>
-            <ignores>
-              <ignore>org.fun.ds.helper*</ignore>
-              <ignore>org.fun.app*</ignore>
-            </ignores>
-            <excludes>
-              <exclude>org/fun/ds/helper/*.class</exclude>
-              <exclude>org/fun/app/*.class</exclude>
-            </excludes>
-          </instrumentation>
+						<ignores>
+							<ignore>org.fun.ds.helper*</ignore>
+							<ignore>org.fun.app*</ignore>
+						</ignores>
+						<excludes>
+							<exclude>org/fun/ds/helper/*.class</exclude>
+							<exclude>org/fun/app/*.class</exclude>
+						</excludes>
+					</instrumentation>
 					<formats>
 						<format>html</format>
 						<format>xml</format>
 					</formats>
 				</configuration>
 			</plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.10.3</version>
-        <configuration>
-        	<author>Rakesh Kaim</author>
-        	<version>${project.version}</version>
-          	<show>public</show>
-          	<nohelp>true</nohelp>
-        </configuration>
-      </plugin>
-    </plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10.3</version>
+				<configuration>
+					<author>Rakesh Kaim</author>
+					<version>${project.version}</version>
+					<show>public</show>
+					<nohelp>true</nohelp>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 </project>
