@@ -12,7 +12,7 @@ public class ApplicationMessages {
 	static final int NORMAL_EXIT_SIGNAL = 0;
 	static final int ABNORMAL_EXIT_SIGNAL = -1;
 	/*Messages used in menu*/
-	static final String HEADER = "\n\nProgram To Demonstrate Singly Linked List Operations";
+	static final String APP_HEADER = "\n\nProgram To Demonstrate Singly Linked List Operations";
 	static final String MENU_HEADER = "\n\nCurrent List State";
 	static final String MENU1 = "\n\t\tPress [1] to add after last element";
 	static final String MENU2 = "\t\tPress [2] to add before first element";
@@ -42,7 +42,7 @@ public class ApplicationMessages {
 	static final String FIRST_SUCCESS = "First element removed successfully";
 	static final String LIST_EMPTY = "List is empty. Please add elements";
 	static final String NOT_FOUND = "Element not found";
-	static final String FOUND = "Element found at index  	";
+	static final String FOUND = "Element found at index ";
 	static final String NOT_VALID_INPUT="Congratulation !! You crack the program.\n";
 	static final String NORMAL_EXIT = "Thanks for testing this application!\n";
 }

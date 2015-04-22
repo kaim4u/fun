@@ -13,16 +13,31 @@ import static org.fun.ds.helper.ApplicationMessages.*;
  * @author Rakesh Kaim
  */
 public class ListProxy {
+
+	/*
+	 * (non-Javadoc) Initializing new empty list
+	 */
 	private List list = new LinkedList();
+
+	/*
+	 * (non-Javadoc) Initializing new input reader
+	 */
 	private Scanner scanner = new Scanner(System.in);
 
+	/*
+	 * (non-Javadoc) Construct this helper class and populate list with
+	 * specified capacity
+	 */
 	public ListProxy(int capacity) {
 		for (int i = 0; i <= capacity; ++i) {
 			list.addLast(i);
 		}
-		header();
+		appHeader();
 	}
 
+	/*
+	 * (non-Javadoc) Handle user request to add an element at last position
+	 */
 	void addLast() {
 		print(INPUT_NUMBER);
 		int data = getInput();
@@ -30,6 +45,9 @@ public class ListProxy {
 		print(ADD_SUCCESS);
 	}
 
+	/*
+	 * (non-Javadoc) Handle user request to add element at first position
+	 */
 	void addFirst() {
 		print(INPUT_NUMBER);
 		int data = getInput();
@@ -37,6 +55,10 @@ public class ListProxy {
 		print(ADD_SUCCESS);
 	}
 
+	/*
+	 * (non-Javadoc) Handle user request to insert an element at specified
+	 * position
+	 */
 	void add() {
 		if (list.size() == 0) {
 			print(LIST_EMPTY);
@@ -55,6 +77,9 @@ public class ListProxy {
 		System.out.print(ADD_SUCCESS);
 	}
 
+	/*
+	 * (non-Javadoc) Handle user request to remove last element
+	 */
 	void removeLast() {
 		if (list.size() == 0) {
 			print(LIST_EMPTY);
@@ -64,6 +89,9 @@ public class ListProxy {
 		print(LAST_SUCCESS);
 	}
 
+	/*
+	 * (non-Javadoc) Handle user request to remove first element
+	 */
 	void removeFirst() {
 		if (list.size() == 0) {
 			print(LIST_EMPTY);
@@ -73,6 +101,10 @@ public class ListProxy {
 		print(FIRST_SUCCESS);
 	}
 
+	/*
+	 * (non-Javadoc) Handle user request to remove an element at specified
+	 * position
+	 */
 	void remove() {
 		int size = list.size();
 		if (size == 0) {
@@ -90,6 +122,10 @@ public class ListProxy {
 		print(REMOVE_SUCCESS);
 	}
 
+	/*
+	 * (non-Javadoc) Handle user request to check whether the specified data
+	 * value present in the list or not
+	 */
 	void search() {
 		if (list.size() == 0) {
 			println(LIST_EMPTY);
@@ -104,19 +140,25 @@ public class ListProxy {
 			println(FOUND + i);
 	}
 
+	/*
+	 * (non-Javadoc) Handle user request to reverse the list
+	 */
 	void reverse() {
 		list.reverse();
 	}
 
+	/*
+	 * (non-Javadoc) Handle user request to create new list of specified size
+	 */
 	void addBulk() {
-		int nuberOfElements = 0;
+		int size = 0;
 		while (true) {
 			print(INPUT_SIZE);
-			nuberOfElements = getInput();
-			if (isValidRange(nuberOfElements)) {
+			size = getInput();
+			if (isValidRange(size)) {
 				list = null;
 				list = new LinkedList();
-				for (int i = 0; i < nuberOfElements; ++i)
+				for (int i = 0; i < size; ++i)
 					list.addLast(i);
 				break;
 			} else {
@@ -126,46 +168,92 @@ public class ListProxy {
 
 	}
 
+	/*
+	 * (non-Javadoc) Handle user request to create new empty list
+	 */
 	private void createEmptyList() {
 		list = null;
 		list = new LinkedList();
 	}
-	private void delete(){
+
+	/*
+	 * (non-Javadoc) Handle user request to delete element with specified value
+	 */
+	private void delete() {
 		if (list.size() == 0) {
 			println(LIST_EMPTY);
 			return;
 		}
 		print(INPUT_NUMBER);
 		int data = getInput();
-		if(list.delete(data))
+		if (list.delete(data))
 			println(REMOVE_SUCCESS);
 		else
 			print(REMOVE_FAIL);
 	}
-	
+
+	/*
+	 * (non-Javadoc) Handle normal exit when user enter exit number
+	 */
 	void normalExit() {
 		println(NORMAL_EXIT);
 		close();
 		System.exit(NORMAL_EXIT_SIGNAL);
 	}
 
+	/*
+	 * (non-Javadoc) Exception handling block in case user enter input other
+	 * than integer
+	 */
 	void abnormalExit() {
 		println(NOT_VALID_INPUT);
 		close();
 		System.exit(ABNORMAL_EXIT_SIGNAL);
 	}
 
-	boolean isValidRange(int nuberOfElements) {
-		return nuberOfElements >= MIN_RANGE && nuberOfElements <= MAX_RANGE;
+	/*
+	 * (non-Javadoc) Write message for invalid menu range
+	 */
+	void invalidMenuRangeMessage() {
+		println(INVALID_MENU_RANGE);
 	}
 
-	boolean isValidChoice(int in) {
-		return in >= MENU_MIN_RANGE && in <= MENU_MAX_RANGE;
+	/*
+	 * (non-Javadoc) Write message for menu choice
+	 */
+	void enterChoiceMessage() {
+		print(INPUT_CHOICE);
 	}
 
-	/**
-	 * Read user input
-	 * @return user input
+	/*
+	 * (non-Javadoc) Validate list size while creating pre-populated list
+	 * 
+	 * @param size the of new list
+	 * 
+	 * @return true if the specified number lies between the list size range
+	 * inclusively
+	 */
+	boolean isValidRange(final int size) {
+		return size >= MIN_RANGE && size <= MAX_RANGE;
+	}
+
+	/*
+	 * (non-Javadoc) Validate user menu choice
+	 * 
+	 * @param choice
+	 * 
+	 * @return true if the specified choice lies between the menu range
+	 * inclusively
+	 */
+	boolean isValidChoice(final int choice) {
+		return choice >= MENU_MIN_RANGE && choice <= MENU_MAX_RANGE;
+	}
+
+	/*
+	 * (non-Javadoc) Read user input
+	 * 
+	 * @return returns user input if user enter valid input otherwise exit from
+	 * the current session.
 	 */
 	int getInput() {
 		int in = 0;
@@ -177,23 +265,30 @@ public class ListProxy {
 		return in;
 	}
 
-	/**
-	 * Close input stream
-	 * 
-	 * @return user input
+	/*
+	 * (non-Javadoc) Close standard input stream
 	 */
 	private void close() {
 		scanner.close();
 	}
 
+	/*
+	 * (non-Javadoc) Print current state of the list
+	 */
 	void showList() {
 		println(list.toString());
 	}
 
+	/*
+	 * (non-Javadoc) Print menu header
+	 */
 	void menuHeader() {
 		println(MENU_HEADER);
 	}
 
+	/*
+	 * (non-Javadoc) Print menu
+	 */
 	void menu() {
 		println(MENU1);
 		println(MENU2);
@@ -209,30 +304,48 @@ public class ListProxy {
 		println(MENU12);
 	}
 
-	void display() {
+	/*
+	 * (non-Javadoc) Build menu and render the view
+	 */
+	void renderView() {
 		menuHeader();
 		showList();
 		menu();
 	}
 
-	void header() {
-		println(HEADER);
+	/*
+	 * (non-Javadoc) Print application header
+	 */
+	void appHeader() {
+		println(APP_HEADER);
 
 	}
 
+	/*
+	 * (non-Javadoc) Helper method for print application messages on standard
+	 * input with new line
+	 */
 	private void println(String msg) {
 		System.out.println(msg);
 	}
 
+	/*
+	 * (non-Javadoc) Helper method for print application messages on standard
+	 * input without new line
+	 */
 	private void print(String msg) {
 		System.out.print(msg);
 	}
 
+	/*
+	 * (non-Javadoc) Handle application initialization and manage application
+	 * life cycle
+	 */
 	public void init() {
 		int choice = -1;
 		while (true) {
-			display();
-			print(INPUT_CHOICE);
+			renderView();
+			enterChoiceMessage();
 			choice = getInput();
 			switch (choice) {
 			case 1:
@@ -264,7 +377,7 @@ public class ListProxy {
 				break;
 			case 10:
 				createEmptyList();
-				break;	
+				break;
 			case 11:
 				delete();
 				break;
@@ -273,9 +386,8 @@ public class ListProxy {
 			}
 			if (isValidChoice(choice))
 				continue;
-			else{
-				println(INVALID_MENU_RANGE);
-			}
+			else
+				invalidMenuRangeMessage();
 		}
 	}
 }
