@@ -320,7 +320,7 @@ public class LinkedList implements List {
 		if(node == null)											// list empty, return
 			return;
 		if(node.next == null){										// reached last node, recursion end here 
-			last = first;
+			last = first;											// base condition reached, swap last and first
 			first = node;
 			return;
 		}
