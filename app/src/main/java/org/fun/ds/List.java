@@ -7,6 +7,7 @@ package org.fun.ds;
  * @version 0.1
  */
 public interface List {
+	
 	/**
 	 * Appends the specified element to the end of this list. and returns true
 	 * if elements added successfully otherwise false
@@ -104,6 +105,7 @@ public interface List {
 	 * @return true if this {@code last} removed successfully otherwise false.
 	 */
 	boolean removeLast();
+	
 	/**
 	 * Search an element in this list and return its first occurrence position 
 	 * if exist and if not -1 otherwise -2 if list is empty. 
