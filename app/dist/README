@@ -2,7 +2,7 @@ Requirements
 JRE 1.6 or Higher (open JDK or Open JRE)
 
 Execute following command
-java -jar app-0.1.jar
+java -jar app
 
 
 
