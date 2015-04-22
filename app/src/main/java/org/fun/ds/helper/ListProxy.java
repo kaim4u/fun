@@ -38,7 +38,7 @@ public class ListProxy {
 	/*
 	 * (non-Javadoc) Handle user request to add an element at last position
 	 */
-	void addLast() {
+	private void addLastHandler() {
 		print(INPUT_NUMBER);
 		int data = getInput();
 		list.addLast(data);
@@ -48,7 +48,7 @@ public class ListProxy {
 	/*
 	 * (non-Javadoc) Handle user request to add element at first position
 	 */
-	void addFirst() {
+	private void addFirstHandler() {
 		print(INPUT_NUMBER);
 		int data = getInput();
 		list.addFirst(data);
@@ -59,7 +59,7 @@ public class ListProxy {
 	 * (non-Javadoc) Handle user request to insert an element at specified
 	 * position
 	 */
-	void add() {
+	private void addHandler() {
 		if (list.size() == 0) {
 			print(LIST_EMPTY);
 			return;
@@ -80,7 +80,7 @@ public class ListProxy {
 	/*
 	 * (non-Javadoc) Handle user request to remove last element
 	 */
-	void removeLast() {
+	private void removeLastHandler() {
 		if (list.size() == 0) {
 			print(LIST_EMPTY);
 			return;
@@ -92,7 +92,7 @@ public class ListProxy {
 	/*
 	 * (non-Javadoc) Handle user request to remove first element
 	 */
-	void removeFirst() {
+	private void removeFirstHandler() {
 		if (list.size() == 0) {
 			print(LIST_EMPTY);
 			return;
@@ -105,7 +105,7 @@ public class ListProxy {
 	 * (non-Javadoc) Handle user request to remove an element at specified
 	 * position
 	 */
-	void remove() {
+	private void removeHandler() {
 		int size = list.size();
 		if (size == 0) {
 			print(LIST_EMPTY);
@@ -126,7 +126,7 @@ public class ListProxy {
 	 * (non-Javadoc) Handle user request to check whether the specified data
 	 * value present in the list or not
 	 */
-	void search() {
+	private void searchHandler() {
 		if (list.size() == 0) {
 			println(LIST_EMPTY);
 			return;
@@ -143,14 +143,14 @@ public class ListProxy {
 	/*
 	 * (non-Javadoc) Handle user request to reverse the list
 	 */
-	void reverse() {
+	private void reverseHandler() {
 		list.reverse();
 	}
 
 	/*
 	 * (non-Javadoc) Handle user request to create new list of specified size
 	 */
-	void addBulk() {
+	private void addBulkHandler() {
 		int size = 0;
 		while (true) {
 			print(INPUT_SIZE);
@@ -171,7 +171,7 @@ public class ListProxy {
 	/*
 	 * (non-Javadoc) Handle user request to create new empty list
 	 */
-	private void createEmptyList() {
+	private void createEmptyListHandler() {
 		list = null;
 		list = new LinkedList();
 	}
@@ -179,7 +179,7 @@ public class ListProxy {
 	/*
 	 * (non-Javadoc) Handle user request to delete element with specified value
 	 */
-	private void delete() {
+	private void deleteHandler() {
 		if (list.size() == 0) {
 			println(LIST_EMPTY);
 			return;
@@ -195,7 +195,7 @@ public class ListProxy {
 	/*
 	 * (non-Javadoc) Handle normal exit when user enter exit number
 	 */
-	void normalExit() {
+	private void normalExit() {
 		println(NORMAL_EXIT);
 		close();
 		System.exit(NORMAL_EXIT_SIGNAL);
@@ -205,7 +205,7 @@ public class ListProxy {
 	 * (non-Javadoc) Exception handling block in case user enter input other
 	 * than integer
 	 */
-	void abnormalExit() {
+	private void abnormalExit() {
 		println(NOT_VALID_INPUT);
 		close();
 		System.exit(ABNORMAL_EXIT_SIGNAL);
@@ -214,14 +214,14 @@ public class ListProxy {
 	/*
 	 * (non-Javadoc) Write message for invalid menu range
 	 */
-	void invalidMenuRangeMessage() {
+	private void invalidMenuRangeMessage() {
 		println(INVALID_MENU_RANGE);
 	}
 
 	/*
 	 * (non-Javadoc) Write message for menu choice
 	 */
-	void enterChoiceMessage() {
+	private void enterChoiceMessage() {
 		print(INPUT_CHOICE);
 	}
 
@@ -233,7 +233,7 @@ public class ListProxy {
 	 * @return true if the specified number lies between the list size range
 	 * inclusively
 	 */
-	boolean isValidRange(final int size) {
+	private boolean isValidRange(final int size) {
 		return size >= MIN_RANGE && size <= MAX_RANGE;
 	}
 
@@ -245,7 +245,7 @@ public class ListProxy {
 	 * @return true if the specified choice lies between the menu range
 	 * inclusively
 	 */
-	boolean isValidChoice(final int choice) {
+	private boolean isValidChoice(final int choice) {
 		return choice >= MENU_MIN_RANGE && choice <= MENU_MAX_RANGE;
 	}
 
@@ -255,7 +255,7 @@ public class ListProxy {
 	 * @return returns user input if user enter valid input otherwise exit from
 	 * the current session.
 	 */
-	int getInput() {
+	private int getInput() {
 		int in = 0;
 		try {
 			in = scanner.nextInt();
@@ -275,21 +275,21 @@ public class ListProxy {
 	/*
 	 * (non-Javadoc) Print current state of the list
 	 */
-	void showList() {
+	private void showList() {
 		println(list.toString());
 	}
 
 	/*
 	 * (non-Javadoc) Print menu header
 	 */
-	void menuHeader() {
+	private void menuHeader() {
 		println(MENU_HEADER);
 	}
 
 	/*
 	 * (non-Javadoc) Print menu
 	 */
-	void menu() {
+	private void menu() {
 		println(MENU1);
 		println(MENU2);
 		println(MENU3);
@@ -307,7 +307,7 @@ public class ListProxy {
 	/*
 	 * (non-Javadoc) Build menu and render the view
 	 */
-	void renderView() {
+	private void renderView() {
 		menuHeader();
 		showList();
 		menu();
@@ -316,7 +316,7 @@ public class ListProxy {
 	/*
 	 * (non-Javadoc) Print application header
 	 */
-	void appHeader() {
+	private void appHeader() {
 		println(APP_HEADER);
 
 	}
@@ -337,9 +337,8 @@ public class ListProxy {
 		System.out.print(msg);
 	}
 
-	/*
-	 * (non-Javadoc) Handle application initialization and manage application
-	 * life cycle
+	/**
+	 * Handle application initialization and manage application life cycle
 	 */
 	public void init() {
 		int choice = -1;
@@ -349,37 +348,37 @@ public class ListProxy {
 			choice = getInput();
 			switch (choice) {
 			case 1:
-				addLast();
+				addLastHandler();
 				break;
 			case 2:
-				addFirst();
+				addFirstHandler();
 				break;
 			case 3:
-				add();
+				addHandler();
 				break;
 			case 4:
-				removeLast();
+				removeLastHandler();
 				break;
 			case 5:
-				removeFirst();
+				removeFirstHandler();
 				break;
 			case 6:
-				remove();
+				removeHandler();
 				break;
 			case 7:
-				search();
+				searchHandler();
 				break;
 			case 8:
-				reverse();
+				reverseHandler();
 				break;
 			case 9:
-				addBulk();
+				addBulkHandler();
 				break;
 			case 10:
-				createEmptyList();
+				createEmptyListHandler();
 				break;
 			case 11:
-				delete();
+				deleteHandler();
 				break;
 			case 12:
 				normalExit();
