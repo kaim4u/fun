@@ -55,8 +55,8 @@ public class LinkedList implements List {
 	 */
 	public void add(final int index, final int data) throws IndexOutOfBoundsException {
 		if (!isElementExist(index)) 									// index not exist, throw exception
-			throw new IndexOutOfBoundsException("Size of this list = "
-					+ size + " and given Index = " + index);
+			throw new IndexOutOfBoundsException("size = "
+					+ size + ", index = " + index);
 		if (first == last || index == 0)								// index point to first node
 			 addFirst(data);											// add first, i.e before the current first
 		else { 															// list size > 1, more than one element
