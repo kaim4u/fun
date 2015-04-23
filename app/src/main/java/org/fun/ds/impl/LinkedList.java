@@ -149,28 +149,6 @@ public class LinkedList implements List {
 		return size; 													//return current size
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("[ ");
-		Node p = first;
-		if(first == null)
-			return sb.append("]").toString();
-		int i =1;
-		while (p != null) {
-			if (p.next == null)
-				sb.append((p.data)).append(" ] Size = " + size);
-			else
-				sb.append(p.data).append(" --> ");
-			p = p.next;
-			if((i++ % 25) == 0)
-				sb.append("\n");
-		}
-		return sb.toString();
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -420,5 +398,27 @@ public class LinkedList implements List {
 			this.data = data; 
 			this.next = next; 
 		}
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("[ ");
+		Node p = first;
+		if(first == null)
+			return sb.append("]").toString();
+		int i =1;
+		while (p != null) {
+			if (p.next == null)
+				sb.append((p.data)).append(" ] Size = " + size);
+			else
+				sb.append(p.data).append(" --> ");
+			p = p.next;
+			if((i++ % 25) == 0)
+				sb.append("\n");
+		}
+		return sb.toString();
 	}
 }
