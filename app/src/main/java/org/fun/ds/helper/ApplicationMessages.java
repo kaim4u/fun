@@ -52,6 +52,6 @@ public class ApplicationMessages {
 	static final String FOUND = "Element found at index ";
 	static final String NOT_VALID_INPUT="Congratulation !! You crack the program.\n";
 	static final String NORMAL_EXIT = "Thanks for testing this application!\n";
-	static final String JVM_MEMORY_ERORR="Insufficient Memory Error. Please adjust -Xms -Xmx JVM option and try again.";
-	static final String JVM_MEMORY_ERORR_2="Insufficient Stack Memory Error. Please adjust -Xss JVM option and try again.";
+	static final String JVM_MEMORY_ERORR="\nInsufficient Memory Error. Please adjust -Xms -Xmx JVM option and try again.\n";
+	static final String JVM_MEMORY_ERORR_2="\nInsufficient Stack Memory Error. Please adjust -Xss JVM option and try again.\n";
 }
