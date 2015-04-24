@@ -187,13 +187,15 @@ public class LinkedList implements List {
 			if (first == last) { 							// first and last point to same node, i.e list has only one node.  
 				last = first = null; 						// nullify last and first
 				--size; 									// updating size
-				return isRemoved = true; 					// first removed
+				isRemoved = true;
+				return isRemoved; 							// first removed
 			} else { 										// first exist and list has more than one node.
 				Node afterNext = first.next; 				// get reference of next to first
 				first = null; 								// nullify first, to avoid dead store
 				first = afterNext; 							// update first with new first
 				--size; 									// update size
-				return isRemoved = true; 					// first removed
+				isRemoved = true;
+				return isRemoved; 							// first removed
 			} 
 		}else return isRemoved; 							// first not exist, list's empty
 	}
