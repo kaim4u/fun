@@ -5,10 +5,10 @@ Execute following command
 java -jar app
 
 In case of recursive reverse
-      --if you are creating a new list of 10000 size 
-        and performing recursive reverse peration
-        you must run java with -Xs20m option
-  eg. java -Xss20m -jar app  
+      --When creating a new list of 10,000 size or more 
+        and then performing recursive reverse operation
+        one must run java with -Xssm option
+  eg. java -Xss20m -jar app 
 	  
 		
 
