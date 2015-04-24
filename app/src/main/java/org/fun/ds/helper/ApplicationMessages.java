@@ -31,7 +31,7 @@ public class ApplicationMessages {
 	static final String MENU13 = "\t\tPress [13] to quit\n";
 	static final String NOTE = "\t\tNote:";
 	static final String NOTE1 = "\t\t1. Please be patience. Printing of list may takes time depending upon current list size.";
-	static final String NOTE2 = "\t\t2. You may have to adjust JVM memory option (-Xss,-Xms,Xmx) depending upon list size";
+	static final String NOTE2 = "\t\t2. You may have to adjust JVM memory option (-Xms,Xmx) depending upon list size";
 	static final String NOTE3 = "\t\t3. In case of recusive reversal you may have to increase stack size (-Xss).\n";
 	
 	/*Application responses */
