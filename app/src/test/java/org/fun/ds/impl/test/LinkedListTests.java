@@ -534,12 +534,20 @@ public class LinkedListTests {
 		assertTrue(true); 	//dummy test, just for code coverage
 	}
 	
+	/**
+	 * Test method for {@link org.fun.ds.impl.LinkedList#rotate()()}.
+	 * Empty list scenario
+	 */
 	@Test
 	public final void testRotate(){
 		list.rotate();
 		assertEquals(0, list.size());
 	}
 	
+	/**
+	 * Test method for {@link org.fun.ds.impl.LinkedList#rotate()()}.
+	 * List with one element scenario
+	 */
 	@Test
 	public final void testRotate1() {
 		list.addLast(12);
@@ -547,6 +555,10 @@ public class LinkedListTests {
 		assertEquals(12, list.getLast());
 	}
 	
+	/**
+	 * Test method for {@link org.fun.ds.impl.LinkedList#rotate()()}
+	 * List with more than one element scenario 
+	 */
 	@Test
 	public final void testRotate3() {
 		list.addLast(12);
