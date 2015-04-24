@@ -4,13 +4,15 @@ package org.fun.ds.helper;
  * @author Rakesh Kaim
  */
 public class ApplicationMessages {
-	/*Application constants*/
+	
+	/*Application Configuration constants*/
 	static final int MENU_MIN_RANGE = 1;
-	static final int MENU_MAX_RANGE = 12;
+	static final int MENU_MAX_RANGE = 13;
 	static final int MIN_RANGE = 0;
-	static final int MAX_RANGE = 5000;
+	static final int MAX_RANGE = 5000000; // 5 million
 	static final int NORMAL_EXIT_SIGNAL = 0;
 	static final int ABNORMAL_EXIT_SIGNAL = -1;
+	
 	/*Messages used in menu*/
 	static final String APP_HEADER = "\n\nProgram To Demonstrate Singly Linked List Operations";
 	static final String MENU_HEADER = "\n\nCurrent List State";
@@ -21,11 +23,16 @@ public class ApplicationMessages {
 	static final String MENU5 = "\t\tPress [5] to remove first element";
 	static final String MENU6 = "\t\tPress [6] to remove at specified position";
 	static final String MENU7 = "\t\tPress [7] to search an element";
-	static final String MENU8 = "\t\tPress [8] to reverse this list";
-	static final String MENU9 = "\t\tPress [9] to create a new prepopulated list of size between "+MIN_RANGE+"-"+MAX_RANGE;
-	static final String MENU10  = "\t\tPress [10] to create a new empty list";
-	static final String MENU11 = "\t\tPress [11] to delete specified number";
-	static final String MENU12 = "\t\tPress [12] to quit\n";
+	static final String MENU8 = "\t\tPress [8] to reverse this list nonrecursively";
+	static final String MENU9 = "\t\tPress [9] to reverse this list recursively";
+	static final String MENU10 = "\t\tPress [10] to create a new prepopulated list of size between "+MIN_RANGE+"-"+MAX_RANGE;
+	static final String MENU11  = "\t\tPress [11] to create a new empty list";
+	static final String MENU12 = "\t\tPress [12] to delete specified number";
+	static final String MENU13 = "\t\tPress [13] to quit\n";
+	static final String NOTE = "\t\tNote:";
+	static final String NOTE1 = "\t\t1. Please be patience. Printing of list may takes time depending upon current list size.";
+	static final String NOTE2 = "\t\t2. You may have to adjust JVM memory option (-Xss,-Xms,Xmx) depending upon list size";
+	static final String NOTE3 = "\t\t3. In case of recusive reversal you may have to increase stack size (-Xss).\n";
 	
 	/*Application responses */
 	static final String INPUT_NUMBER = "Enter number ";
@@ -45,4 +52,6 @@ public class ApplicationMessages {
 	static final String FOUND = "Element found at index ";
 	static final String NOT_VALID_INPUT="Congratulation !! You crack the program.\n";
 	static final String NORMAL_EXIT = "Thanks for testing this application!\n";
+	static final String JVM_MEMORY_ERORR="Insufficient Memory Error. Please adjust -Xms -Xmx JVM option and try again.";
+	static final String JVM_MEMORY_ERORR_2="Insufficient Stack Memory Error. Please adjust -Xss JVM option and try again.";
 }

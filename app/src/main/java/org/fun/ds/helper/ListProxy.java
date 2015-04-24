@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import org.fun.ds.List;
 import org.fun.ds.impl.LinkedList;
+
 import static org.fun.ds.helper.ApplicationMessages.*;
 
 /**
@@ -39,20 +40,28 @@ public class ListProxy {
 	 * (non-Javadoc) Handle user request to add an element at last position
 	 */
 	private void addLastHandler() {
-		print(INPUT_NUMBER);
-		int data = getInput();
-		list.addLast(data);
-		print(ADD_SUCCESS);
+		try {
+			print(INPUT_NUMBER);
+			int data = getInput();
+			list.addLast(data);
+			print(ADD_SUCCESS);
+		} catch (Throwable t) {
+			memoryErrorHandler(JVM_MEMORY_ERORR);
+		}
 	}
 
 	/*
 	 * (non-Javadoc) Handle user request to add element at first position
 	 */
 	private void addFirstHandler() {
-		print(INPUT_NUMBER);
-		int data = getInput();
-		list.addFirst(data);
-		print(ADD_SUCCESS);
+		try {
+			print(INPUT_NUMBER);
+			int data = getInput();
+			list.addFirst(data);
+			print(ADD_SUCCESS);
+		} catch (Throwable t) {
+			memoryErrorHandler(JVM_MEMORY_ERORR);
+		}
 	}
 
 	/*
@@ -60,21 +69,25 @@ public class ListProxy {
 	 * position
 	 */
 	private void addHandler() {
-		if (list.size() == 0) {
-			print(LIST_EMPTY);
-			return;
-		}
-		print(INPUT_NUMBER);
-		int data = getInput();
-		print(INPUT_POSITION);
-		int i = getInput();
-		while (i >= list.size()) {
-			println(INVALID_POSITION + (list.size() - 1));
+		try {
+			if (list.size() == 0) {
+				print(LIST_EMPTY);
+				return;
+			}
+			print(INPUT_NUMBER);
+			int data = getInput();
 			print(INPUT_POSITION);
-			i = getInput();
+			int i = getInput();
+			while (i >= list.size()) {
+				println(INVALID_POSITION + (list.size() - 1));
+				print(INPUT_POSITION);
+				i = getInput();
+			}
+			list.add(i, data);
+			print(ADD_SUCCESS);
+		} catch (Throwable t) {
+			memoryErrorHandler(JVM_MEMORY_ERORR);
 		}
-		list.add(i, data);
-		System.out.print(ADD_SUCCESS);
 	}
 
 	/*
@@ -143,29 +156,48 @@ public class ListProxy {
 	/*
 	 * (non-Javadoc) Handle user request to reverse the list
 	 */
+	@SuppressWarnings("deprecation")
 	private void reverseHandler() {
-		list.reverse();
+		try {
+			list.reverse();
+		} catch (Throwable t) {
+			memoryErrorHandler(JVM_MEMORY_ERORR_2);
+		}
 	}
-
+	
+	/*
+	 * (non-Javadoc) Handle user request to reverse the list
+	 */
+	private void rotateHandler() {
+		try {
+			list.rotate();
+		} catch (Throwable t) {
+			memoryErrorHandler(JVM_MEMORY_ERORR);
+		}
+	}
 	/*
 	 * (non-Javadoc) Handle user request to create new list of specified size
 	 */
 	private void addBulkHandler() {
 		int size = 0;
-		while (true) {
-			print(INPUT_SIZE);
-			size = getInput();
-			if (isValidRange(size)) {
-				list = null;
-				list = new LinkedList();
-				for (int i = 0; i < size; ++i)
-					list.addLast(i);
-				break;
-			} else {
-				println(INVALID_RANGE);
+		try {
+			while (true) {
+				print(INPUT_SIZE);
+				size = getInput();
+				if (isValidRange(size)) {
+					list = null;
+					list = new LinkedList();
+					for (int i = 0; i < size; ++i)
+						list.addLast(i);
+					break;
+				} else {
+					println(INVALID_RANGE);
+				}
 			}
-		}
 
+		} catch (Throwable t) {
+			memoryErrorHandler(JVM_MEMORY_ERORR);
+		}
 	}
 
 	/*
@@ -199,6 +231,15 @@ public class ListProxy {
 		println(NORMAL_EXIT);
 		close();
 		System.exit(NORMAL_EXIT_SIGNAL);
+	}
+
+	/*
+	 * (non-Javadoc) Insufficient memory error
+	 */
+	private void memoryErrorHandler(String msg) {
+		println(msg);
+		close();
+		System.exit(ABNORMAL_EXIT_SIGNAL);
 	}
 
 	/*
@@ -276,7 +317,7 @@ public class ListProxy {
 	 * (non-Javadoc) Print current state of the list
 	 */
 	private void showList() {
-		println(list.toString());
+		list.showList();
 	}
 
 	/*
@@ -302,6 +343,11 @@ public class ListProxy {
 		println(MENU10);
 		println(MENU11);
 		println(MENU12);
+		println(MENU13);
+		println(NOTE);
+		println(NOTE1);
+		println(NOTE2);
+		println(NOTE3);
 	}
 
 	/*
@@ -369,18 +415,21 @@ public class ListProxy {
 				searchHandler();
 				break;
 			case 8:
-				reverseHandler();
+				rotateHandler();	// non-recursive reversal   
 				break;
 			case 9:
-				addBulkHandler();
+				reverseHandler();  // recursive reversal
 				break;
 			case 10:
-				createEmptyListHandler();
+				addBulkHandler();
 				break;
 			case 11:
-				deleteHandler();
+				createEmptyListHandler();
 				break;
 			case 12:
+				deleteHandler();
+				break;
+			case 13:
 				normalExit();
 			}
 			if (isValidChoice(choice))

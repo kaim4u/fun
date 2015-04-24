@@ -29,7 +29,7 @@ public interface List {
 	 *            the element value
 	 * @throws {@code IndexOutOfBoundsException} if index element does not exist
 	 */
-	void add(final int index, final int data) throws IndexOutOfBoundsException;
+	void add(final int index, final int data);
 
 	/**
 	 * Inserts the specified element at the beginning of this list.
@@ -64,7 +64,7 @@ public interface List {
 	 * @throws {@link IndexOutOfBoundsException}
 	 *             if this index lies between index < 0 and index >= size
 	 */
-	int get(final int index) throws IndexOutOfBoundsException;
+	int get(final int index);
 
 	/**
 	 * This method returns head element present at index = 0 if exist otherwise
@@ -117,10 +117,20 @@ public interface List {
 	int contain(int data);
 	
 	/**
-	 * Reverse this list  
+	 * Reverse this list  recursively
+	 * Use this method when list size considerably
+	 * enough respective to JVM default heap and stack size.
+	 * @deprecated Replaced by {@link #rotate()}  
 	 */
 	void reverse();
 	
+	/**
+	 * Reverse this list non recursively
+	 * It require less JVM Stack memory
+	 * as compare to {@link org.fun.ds.List#reverse()}
+	 */
+	void rotate();
+
 	/**
 	 * Remove first occurrence of element specified by its value if exist.  
 	 * 
@@ -129,4 +139,9 @@ public interface List {
 	 * @return    returns true if element exist with same value otherwise false
 	 */
 	boolean delete(final int data);
+	
+	/**
+	 * Write current state of this list on standard output.  
+	 */
+	void showList();
 }

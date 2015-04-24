@@ -514,5 +514,47 @@ public class LinkedListTests {
 		list.addLast(160);
 		assertEquals(true, list.delete(120));
 	}
+	/**
+	 * Test method for {@link org.fun.ds.impl.LinkedList#showList()}.
+	 */
+	@Test
+	public final void testShowList() {
+		for(int i = 0; i < 50; ++i)
+			list.add(i);
+		list.showList();
+		assertTrue(true); //dummy test, just for code coverage
+	}
 	
+	/**
+	 * Test method for {@link org.fun.ds.impl.LinkedList#showList()()}.
+	 */
+	@Test
+	public final void testShowList2() {
+		list.showList();	// list empty scenario
+		assertTrue(true); 	//dummy test, just for code coverage
+	}
+	
+	@Test
+	public final void testRotate(){
+		list.rotate();
+		assertEquals(0, list.size());
+	}
+	
+	@Test
+	public final void testRotate1() {
+		list.addLast(12);
+		list.rotate();
+		assertEquals(12, list.getLast());
+	}
+	
+	@Test
+	public final void testRotate3() {
+		list.addLast(12);
+		list.addLast(13);
+		list.addLast(14);
+		list.rotate();
+		assertEquals(14, list.getFirst());
+		assertEquals(13, list.get(1));
+		assertEquals(12, list.getLast());
+	}
 }
