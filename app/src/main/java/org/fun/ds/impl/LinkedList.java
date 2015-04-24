@@ -292,7 +292,7 @@ public class LinkedList implements List {
 	/* (non-Javadoc)
 	 * @see org.fun.ds.List#reverse()
 	 */
-	public void reverse() {
+	@Deprecated public void reverse() {
 		reverseRecursively(first);
 		Node temp = last; 
 		last = first;											// swap last and first
