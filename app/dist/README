@@ -1,5 +1,5 @@
 Requirements
-JRE 1.7 or Higher (open JDK or Open JRE preffered)
+JRE 1.7 or Higher (Open JRE preffered)
 
 Execute following command
 java -jar app
@@ -8,6 +8,7 @@ In case of recursive reverse
       --if you are creating a new list of 10000 size 
         and performing recursive reverse peration
         you must run java with -Xs20m option
+  eg. java -Xss20m -jar app  
 	  
 		
 
