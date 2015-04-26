@@ -7,35 +7,36 @@
 	<version>0.1</version>
 	<name>app</name>
 	<url>http://maven.apache.org</url>
-	
+
 	<developers>
 		<developer>
 			<name>Rakesh Kaim</name>
 			<roles>
 				<role>Programmer</role>
 				<role>Designer</role>
+				<role>Quality Assurer</role>
 			</roles>
 			<email>java.kaim@gmail.com</email>
 		</developer>
 	</developers>
-	
+
 	<properties>
 
 		<!-- Generic properties -->
 		<java.version>1.7</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		
+
 		<!-- Logging -->
 		<logback.version>1.0.13</logback.version>
 		<slf4j.version>1.7.5</slf4j.version>
-		
+
 		<!-- Test -->
 		<junit.version>4.11</junit.version>
 		<surefire.version>2.13</surefire.version>
 		<cobertura.version>2.7</cobertura.version>
 		<skipTests>false</skipTests>
-	
+
 	</properties>
 
 	<dependencies>
@@ -68,7 +69,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<defaultGoal>install</defaultGoal>
 		<testResources>
@@ -80,7 +81,7 @@
 			</testResource>
 		</testResources>
 		<plugins>
-		
+
 			<!-- Compiler Plugin -->
 			<!-- mvn compile -->
 			<plugin>
@@ -92,7 +93,7 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
-			
+
 			<!-- Executable Jar Plugin -->
 			<!-- mvn package -->
 			<plugin>
@@ -106,7 +107,7 @@
 					</archive>
 				</configuration>
 			</plugin>
-			
+
 			<!-- Test Report Plugin -->
 			<!-- mvn surefire:test -->
 			<plugin>
@@ -123,7 +124,7 @@
 					</includes>
 				</configuration>
 			</plugin>
-			
+
 			<!-- Code Coverage Plugin -->
 			<!-- mvn cobertura:cobertura -->
 			<plugin>
@@ -146,7 +147,7 @@
 					</formats>
 				</configuration>
 			</plugin>
-			
+
 			<!-- Java Doc Plugin -->
 			<!-- mvn javadoc:javadoc -->
 			<plugin>

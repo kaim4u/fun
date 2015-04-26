@@ -1,6 +1,8 @@
 package org.fun.ds.impl;
 
 import org.fun.ds.List;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 /**
  *  Singly linked list ADT implementation.
  * 
@@ -8,6 +10,7 @@ import org.fun.ds.List;
  * @version 0.1
  */
 public class LinkedList implements List {
+	Logger log = LoggerFactory.getLogger(getClass().getCanonicalName());
 	/**
 	 * 	Represents the first element in this List.
 	 */
